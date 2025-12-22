@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0d4a0d">
+    <title>Blackjack - Chip Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <!-- Blackjack Header -->
+        <div class="header">
+            <a href="index.html" class="home-btn" title="Home">🏠</a>
+            <button class="sound-btn" onclick="toggleSound()" title="Toggle Sound">🔊</button>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">⛶</button>
+            <h1>BLACKJACK</h1>
+        </div>
+        
+        <!-- Blackjack Game -->
+        <div id="topStatusBar"></div>
+        
+        <div class="split-layout">
+            <div id="playerSide" class="side-panel"></div>
+            <div id="dealerSide" class="side-panel"></div>
+        </div>
+        
+        <div id="outcomeBanner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="cloud-storage.js"></script>
+    
+    <!-- Sound and Fullscreen -->
+    <script>
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen?.();
+            } else {
+                document.exitFullscreen?.();
+            }
+        }
+        
+        // Update sound button on load (sound toggle is in script.js)
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
+            document.querySelectorAll('.sound-btn').forEach(btn => {
+                btn.textContent = soundEnabled ? '🔊' : '🔇';
+                btn.classList.toggle('muted', !soundEnabled);
+            });
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

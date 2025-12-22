@@ -1,0 +1,40 @@
+{
+  "name": "Chip Simulator",
+  "short_name": "ChipSim",
+  "description": "Track poker and blackjack chips digitally. Use real cards - this app handles the chips. For entertainment purposes only - no real money gambling.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#063006",
+  "theme_color": "#0d4a0d",
+  "orientation": "portrait-primary",
+  "categories": ["games", "entertainment"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎰</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Blackjack",
+      "short_name": "Blackjack",
+      "description": "Play Blackjack chip tracker",
+      "url": "/blackjack.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>", "sizes": "any" }]
+    },
+    {
+      "name": "Poker",
+      "short_name": "Poker", 
+      "description": "Play Texas Hold'em chip tracker",
+      "url": "/poker.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🂡</text></svg>", "sizes": "any" }]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "rooms": {
+      ".read": true,
+      ".write": true
+    },
+    "leaderboard": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

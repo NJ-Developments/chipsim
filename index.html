@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0d4a0d">
+    <meta name="description" content="Track poker and blackjack chips digitally. Use real cards - this app handles the chips. For entertainment purposes only - no real money gambling.">
+    <meta name="keywords" content="chip tracker, poker chips, blackjack, casino simulation, card game tracker">
+    <title>Chip Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎰</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Home Screen -->
+        <div class="home-screen">
+            <div class="home-header">
+                <h1 class="home-title">CHIP SIMULATOR</h1>
+                <p class="home-subtitle">Track your chips. Play with real cards.</p>
+            </div>
+            
+            <div class="home-games">
+                <a href="poker.html" class="game-card">
+                    <div class="game-card-title">Texas Hold'em</div>
+                    <div class="game-card-desc">2-8 players • Blinds • All-in tracking</div>
+                    <div class="game-card-features">
+                        <span>Series stats</span>
+                        <span>Burn card prompts</span>
+                        <span>Pot odds</span>
+                    </div>
+                </a>
+                
+                <a href="blackjack.html" class="game-card">
+                    <div class="game-card-title">Blackjack</div>
+                    <div class="game-card-desc">Classic 21 • Hit, Stand, Double, Split</div>
+                    <div class="game-card-features">
+                        <span>Highscores</span>
+                        <span>Streak tracking</span>
+                        <span>Sound effects</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="home-instructions">
+                <h3>How It Works</h3>
+                <div class="instruction-tabs">
+                    <button class="instruction-tab active" onclick="showTab('general')">General</button>
+                    <button class="instruction-tab" onclick="showTab('poker')">Poker</button>
+                    <button class="instruction-tab" onclick="showTab('blackjack')">Blackjack</button>
+                </div>
+                <div class="instruction-content">
+                    <div id="tab-general" class="instruction-panel active">
+                        <p><strong>This is a chip tracker, not a card game.</strong></p>
+                        <p>Use real cards IRL - this app just tracks the chips and enforces betting rules.</p>
+                        <ul>
+                            <li>Deal physical cards yourself</li>
+                            <li>Track bets and pots digitally</li>
+                            <li>Works on any device</li>
+                            <li>Stats sync across sessions</li>
+                        </ul>
+                    </div>
+                    <div id="tab-poker" class="instruction-panel">
+                        <p><strong>Texas Hold'em Rules:</strong></p>
+                        <ul>
+                            <li>Dealer button moves each hand</li>
+                            <li>Small & Big blinds posted automatically</li>
+                            <li>Burn card prompts before flop/turn/river</li>
+                            <li>Keyboard: F=Fold, C=Check/Call, A=All-in</li>
+                            <li>Declare winner at showdown manually</li>
+                        </ul>
+                    </div>
+                    <div id="tab-blackjack" class="instruction-panel">
+                        <p><strong>Blackjack Rules:</strong></p>
+                        <ul>
+                            <li>Get as close to 21 without going over</li>
+                            <li>Hit = Take another card</li>
+                            <li>Stand = Keep your hand</li>
+                            <li>Double = Double bet, get one card</li>
+                            <li>Split = Split pairs into two hands</li>
+                            <li>Blackjack pays 3:2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Legal Disclaimer for App Stores -->
+            <div class="legal-disclaimer">
+                <p><strong>🎲 For Entertainment Only</strong></p>
+                <p>This app simulates casino chip tracking and does not involve real money gambling. No actual currency is wagered, won, or lost. Success in this game does not indicate future success in real money gambling.</p>
+            </div>
+            
+            <div class="home-footer">
+                <button class="sound-btn-home" onclick="toggleSound()" title="Toggle Sound">🔊</button>
+                <span class="version-text">v2.1</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple tab switching
+        function showTab(tab) {
+            document.querySelectorAll('.instruction-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.instruction-panel').forEach(p => p.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('tab-' + tab).classList.add('active');
+        }
+        
+        // Sound toggle
+        let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
+        
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('soundEnabled', soundEnabled);
+            updateSoundButton();
+        }
+        
+        function updateSoundButton() {
+            const btn = document.querySelector('.sound-btn-home');
+            if (btn) btn.textContent = soundEnabled ? '🔊' : '🔇';
+        }
+        
+        // Update sound button on load
+        document.addEventListener('DOMContentLoaded', updateSoundButton);
+    </script>
+</body>
+</html>
